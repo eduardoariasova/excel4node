@@ -30,49 +30,49 @@ let usuarios = [
     {
         nombre: "daniel",
         apellido: "perez",
-        edad: "27",
-        id: "45345645",
-        telefono: "344564576",
+        edad: 27,
+        id: 45345645,
+        telefono: 344564576,
         correo: "daniel@gmail.com",
     },
     {
         nombre: "Pedro",
         apellido: "suarez",
-        edad: "25",
-        id: "45345645111",
-        telefono: "3445645722226",
+        edad: 25,
+        id: 45345645111,
+        telefono: 3445645722226,
         correo: "petro@gmail.com",
     },
     {
         nombre: "alejandra",
         apellido: "ospina",
-        edad: "29",
-        id: "453456434235",
-        telefono: "34452342364576",
+        edad: 29,
+        id: 453456434235,
+        telefono: 3445234236457,
         correo: "alejandra@gmail.com",
     },
     {
         nombre: "gabriel",
         apellido: "arias",
-        edad: "22",
-        id: "4534564523423",
-        telefono: "3445645734236",
+        edad: 22,
+        id: 4534564523423,
+        telefono: 3445645734236,
         correo: "gabriel@gmail.com",
     },
     {
         nombre: "camilo",
         apellido: "buitrago",
-        edad: "28",
-        id: "4534523645",
-        telefono: "3445645712316",
+        edad: 28,
+        id: 4534523645,
+        telefono: 3445645712316,
         correo: "camilo@gmail.com",
     },
     {
         nombre: "sebastian",
         apellido: "garcia",
-        edad: "29",
-        id: "453456412315",
-        telefono: "34456123124576",
+        edad: 29,
+        id: 453456412315,
+        telefono: 34456123124576,
         correo: "sebastian@gmail.com",
     },
 ];
@@ -121,9 +121,44 @@ app.get("/descargar-excel", function(req, res){
     ws.cell(1, 6).string("Correo").style(cualColumnaEstilo);
 
 
+    let cualFila = 2;
+    // Foreach - creación de datos
+    usuarios.forEach(usuarioActual => {
+
+        // Nombre
+        ws.cell(cualFila, 1).string(usuarioActual.nombre).style(contenidoEstilo);
+        // apellido
+        ws.cell(cualFila, 2).string(usuarioActual.apellido).style(contenidoEstilo);
+        // edad
+        ws.cell(cualFila, 3).number(usuarioActual.edad).style(contenidoEstilo);
+        // id
+        ws.cell(cualFila, 4).number(usuarioActual.id).style(contenidoEstilo);
+        // teléfono
+        ws.cell(cualFila, 5).number(usuarioActual.telefono).style(contenidoEstilo);
+        // correo
+        ws.cell(cualFila, 6).string(usuarioActual.correo).style(contenidoEstilo);
+
+        // Aumenta de fila
+        cualFila = cualFila + 1;
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //Ruta del archivo
     const pathExcel = path.join(__dirname, 'excel', nombreArchivo + '.xlsx');
-
     //Escribir o guardar
     wb.write(pathExcel, function(err, stats){
         if(err) console.log(err);
