@@ -1,3 +1,4 @@
+const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
@@ -132,7 +133,11 @@ app.get("/descargar-excel", function(req, res){
             function downloadFile(){res.download(pathExcel);}
             downloadFile();
 
-            console.log("Archivo descargado correctamente");
+            // Borrar archivo
+            fs.rm(pathExcel, function(err){
+                if(err) console.log(err);
+                else  console.log("Archivo descargado y borrado del servidor correctamente");
+            });
         }
     });
 });
