@@ -122,8 +122,30 @@ app.get("/descargar-excel", function(req, res){
 
 
     let cualFila = 2;
-    // Foreach - creación de datos
-    usuarios.forEach(usuarioActual => {
+    // // Foreach - creación de datos
+    // usuarios.forEach(usuarioActual => {
+    //     // Nombre
+    //     ws.cell(cualFila, 1).string(usuarioActual.nombre).style(contenidoEstilo);
+    //     // apellido
+    //     ws.cell(cualFila, 2).string(usuarioActual.apellido).style(contenidoEstilo);
+    //     // edad
+    //     ws.cell(cualFila, 3).number(usuarioActual.edad).style(contenidoEstilo);
+    //     // id
+    //     ws.cell(cualFila, 4).number(usuarioActual.id).style(contenidoEstilo);
+    //     // teléfono
+    //     ws.cell(cualFila, 5).number(usuarioActual.telefono).style(contenidoEstilo);
+    //     // correo
+    //     ws.cell(cualFila, 6).string(usuarioActual.correo).style(contenidoEstilo);
+
+    //     // Aumenta de fila
+    //     cualFila = cualFila + 1;
+    // });
+
+
+    // FOR - creación de datos
+    for(let i=0; i<usuarios.length; i++){
+
+        let usuarioActual = usuarios[i]; // cada posición del arreglo
 
         // Nombre
         ws.cell(cualFila, 1).string(usuarioActual.nombre).style(contenidoEstilo);
@@ -140,8 +162,7 @@ app.get("/descargar-excel", function(req, res){
 
         // Aumenta de fila
         cualFila = cualFila + 1;
-    });
-
+    }
 
 
 
